@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     Collider2D coll;
     SpriteRenderer spriter;
     Animator anim;
-    //°è¼Ó new¸¦ »ç¿ëÇÏ¸é ÃÖÀûÈ­¿¡ ÁÁÁö ¾Ê¾Æ¼­ º¯¼ö¸¦ ¸¸µé¾îÁà¾ßÇÔ
+    //ï¿½ï¿½ï¿½ newï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     WaitForFixedUpdate wait;
 
     // Start is called before the first frame update
@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
         Vector2 dirVec = target.position - rigid.position;
         Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextVec);
-        rigid.velocity = Vector2.zero;
+        rigid.linearVelocity = Vector2.zero;
     }
 
     void LateUpdate()
@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        //ÇÊÅÍ
+        //ï¿½ï¿½ï¿½ï¿½
         if (!collision.CompareTag("Bullet") || !isLive)
             return;
 
@@ -106,8 +106,8 @@ public class Enemy : MonoBehaviour
 
     IEnumerator KnockBack()
     {
-        //yield return new WaitForSeconds(2f); //2ÃÊ ½¬±â
-        yield return wait; //1ÇÁ·¹ÀÓ ½¬±â //ÇÏ³ªÀÇ ¹°¸® ÇÁ·¹ÀÓÀ» µô·¹ÀÌ
+        //yield return new WaitForSeconds(2f); //2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        yield return wait; //1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ //ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         Vector3 playerPos = GameManager.instance.player.transform.position;
         Vector3 dirVec = transform.position - playerPos;
         rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
