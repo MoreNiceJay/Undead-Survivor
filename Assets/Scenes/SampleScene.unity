@@ -6098,7 +6098,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Title2
+  m_Text: 'Title3
+
+'
 --- !u!222 &366021307
 CanvasRenderer:
   m_ObjectHideFlags: 0
