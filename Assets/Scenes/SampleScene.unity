@@ -6060,10 +6060,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 123023108}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 58.999992, y: 38.79999}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -20}
+  m_SizeDelta: {x: 0, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &366021306
 MonoBehaviour:
@@ -6092,13 +6092,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Title2
+  m_Text: "\uBD84\uB2F9\uC5D0\uC11C \uC0B4\uC544\uB0A8\uAE30"
 --- !u!222 &366021307
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6864,7 +6864,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.555555
+  orthographic size: 51.20708
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -22392,7 +22392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2068727440
 RectTransform:
   m_ObjectHideFlags: 0
