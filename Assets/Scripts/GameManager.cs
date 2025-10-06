@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     public Transform joy;
     public GameObject enemyCleaner;
 
+    public GameObject uiPause;
+
     void Awake()
     {
         instance = this;
@@ -94,6 +96,18 @@ public class GameManager : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+    public void GamePause()
+    {
+        Time.timeScale = 0;
+        joy.localScale = Vector3.zero;
+        uiPause.SetActive(true);
+    }
+    public void GameResume()
+    {
+        Time.timeScale = 1;
+        joy.localScale = Vector3.one;
+        uiPause.SetActive(false);
     }
 
     void Update()
