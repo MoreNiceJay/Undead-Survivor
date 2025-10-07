@@ -17,7 +17,7 @@ public class Monster : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
-        
+
     }
 
     // Update is called once per frame
@@ -27,5 +27,11 @@ public class Monster : MonoBehaviour
         Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextVec);
         rigid.linearVelocity = Vector2.zero;
+    }
+
+    void OnEnable()
+    {
+        target = GameManager.instance.player.GetComponent<Rigidbody2D>();
+        isLive = true;
     }
 }
