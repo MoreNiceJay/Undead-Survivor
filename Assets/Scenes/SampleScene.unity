@@ -13545,8 +13545,8 @@ MonoBehaviour:
   animCon:
   - {fileID: 9100000, guid: e0cd9dcbc49320745aa20be69f4fc2b4, type: 2}
   - {fileID: 22100000, guid: 9b0e128f79ec8e04586f1edc41a98e60, type: 2}
-  - {fileID: 22100000, guid: 9b0e128f79ec8e04586f1edc41a98e60, type: 2}
-  - {fileID: 22100000, guid: 9b0e128f79ec8e04586f1edc41a98e60, type: 2}
+  - {fileID: 9100000, guid: 4d1677c05d3144803af7481205220035, type: 2}
+  - {fileID: 22100000, guid: 4adae958c621e4b18864377b0779a6ed, type: 2}
 --- !u!70 &1039390960
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
