@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     [Header("# Game Control")]
     public float gameTime;
-    public float maxTime = 2 * 10f;
+    public float maxTime = 1 * 10f;
     public bool isLive;
 
     [Header("# Player Info")]
@@ -43,7 +43,8 @@ public class GameManager : MonoBehaviour
         health = maxHealth;
 
         player.gameObject.SetActive(true);
-        uiLv.Select(playerId % 2);
+        //플레이어 선택 부분
+        uiLv.Select(playerId%2);
         Resume();
 
         AudioManager.instance.PlayBgm(true);
