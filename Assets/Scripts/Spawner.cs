@@ -35,11 +35,12 @@ public class Spawner : MonoBehaviour
     void Spawn()
     {
         GameObject enemy = GameManager.instance.pool.Get(0);
-        GameObject monster = GameManager.instance.pool.Get(3);
         enemy.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
-        monster.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
         enemy.GetComponent<Enemy>().Init(spawnData[level]);
-        // enemy.GetComponent<Monster>().Init(spawnData[level]);
+
+        // GameObject monster = GameManager.instance.pool.Get(3);
+        // monster.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
+        // monster.GetComponent<Monster>().Init(spawnData[level]);
     }
 }
 

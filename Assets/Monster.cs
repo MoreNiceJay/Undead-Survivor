@@ -1,37 +1,128 @@
 using UnityEngine;
 
+using System.Collections;
+
+
+
 public class Monster : MonoBehaviour
 {
 
     public float speed;
+    public float health;
+    public float maxHealth;
+    public RuntimeAnimatorController[] animCon;
     public Rigidbody2D target;
 
+
     bool isLive;
+
     Rigidbody2D rigid;
+    Collider2D coll;
     SpriteRenderer spriter;
+    Animator anim;
+    //��� new�� ����ϸ� ����ȭ�� ���� �ʾƼ� ������ ����������
+    WaitForFixedUpdate wait;
 
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Start is called before the first frame update
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        spriter = GetComponent<SpriteRenderer>();
-
+        // spriter = GetComponent<SpriteRenderer>();
+        // anim = GetComponent<Animator>();
+        wait = new WaitForFixedUpdate();
+        coll = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector2 dirVec = (target.position - rigid.position).normalized;
+        if (!GameManager.instance.isLive)
+            return;
+
+        if (!isLive )
+            return;
+
+
+        Vector2 dirVec = target.position - rigid.position;
         Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextVec);
         rigid.linearVelocity = Vector2.zero;
+    }
+
+    void LateUpdate()
+    {
+        if (!GameManager.instance.isLive)
+            return;
+        // spriter.flipX = target.position.x < rigid.position.x;
     }
 
     void OnEnable()
     {
         target = GameManager.instance.player.GetComponent<Rigidbody2D>();
         isLive = true;
+        health = maxHealth;
+        coll.enabled = true;
+        rigid.simulated = true;
+        // spriter.sortingOrder = 2;
+        // anim.SetBool("Dead", false);
+    }
+
+    public void Init(SpawnData data)
+    {
+        // anim.runtimeAnimatorController = animCon[data.spriteType];
+        speed = data.speed;
+        maxHealth = data.health;
+        health = data.health;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        //����
+        if (!collision.CompareTag("Bullet") || !isLive)
+            return;
+
+        health -= collision.GetComponent<Bullet>().damage;
+        StartCoroutine(KnockBack());
+        //AudioManager.instance.PlaySfx(AudioManager.Sfx.Melee);
+
+        if (health > 0)
+        {
+            //..Live
+            // anim.SetTrigger("Hit");
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
+        }
+        else
+        {
+            //..Die
+            isLive = false;
+            coll.enabled = false;
+            rigid.simulated = false;
+            Dead();
+            // spriter.sortingOrder = 1;
+            // anim.SetBool("Dead", true);
+            GameManager.instance.kill++;
+            GameManager.instance.GetExp();
+            if (GameManager.instance.isLive)
+            {
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead);
+                
+            }
+            
+
+        }
+    }
+
+    IEnumerator KnockBack()
+    {
+        //yield return new WaitForSeconds(2f); //2�� ����
+        yield return wait; //1������ ���� //�ϳ��� ���� �������� ������
+        Vector3 playerPos = GameManager.instance.player.transform.position;
+        Vector3 dirVec = transform.position - playerPos;
+        rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
+    }
+
+    void Dead()
+    {
+        gameObject.SetActive(false);
     }
 }
