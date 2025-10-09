@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
         player.gameObject.SetActive(true);
         //플레이어 선택 부분
-        uiLv.Select(playerId%2);
+        uiLv.Select(playerId);
         Resume();
 
         AudioManager.instance.PlayBgm(true);

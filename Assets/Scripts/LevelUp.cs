@@ -33,20 +33,25 @@ public class LevelUp : MonoBehaviour
         AudioManager.instance.EffectBgm(false);
     }
 
+
+    //ìºë¦­í„° ì„ íƒì‹œë¡œ ì¶”ê°€ ìƒì„± í•´ì•¼í•¨.
     public void Select(int i)
     {
+
+        Debug.Log("ë””ë²„ê·¸ ìºë¦­í„°" + i);
         items[i].OnClick();
+
     }
 
     void Next()
     {
-        //¸ğµç ¾ÆÀÌÅÛ ºñÈ°¼ºÈ­
+        //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
         foreach(Item item in items)
         {
             item.gameObject.SetActive(false);
         }
 
-        //·¥´ı 3°³ È°¼ºÈ­
+        //ï¿½ï¿½ï¿½ï¿½ 3ï¿½ï¿½ È°ï¿½ï¿½È­
         int[] random = new int[3];
         while (true)
         {
@@ -62,7 +67,7 @@ public class LevelUp : MonoBehaviour
         {
             Item ranItem = items[random[i]];
 
-            //¸¸·¾ ¾ÆÀÌÅÛÀº ¼Òºñ¾ÆÀÌÅÛÀ¸·Î ´ëÃ¼
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Òºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼
             if(ranItem.level == ranItem.data.damages.Length)
             {
                 items[4].gameObject.SetActive(true);
